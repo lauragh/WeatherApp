@@ -1,0 +1,13 @@
+
+<div>
+    <label for="locationList" class="form-label">Introduce una localidad</label>
+    <input (change)="sendLocation($event)" id="locationList" class="form-control mb-2" list="location" placeholder="Ej. Madrid, San Vicent del Raspeig">
+    <datalist id="location">
+        <option *ngFor="let location of locations" [value]="location"></option>
+    </datalist>
+    <p>ó</p>
+    <div class="btn justify-content-center d-flex">
+        <img class="me-1" src="assets/img/pin-alt.svg">
+        Usar localización actual
+    </div>
+</div>

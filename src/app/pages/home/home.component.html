@@ -1,0 +1,21 @@
+<main class="blue-bg">
+    <h2 class="text-white text-center p-2 blue-main">El tiempo</h2>
+    <div class="row m-4">
+        <section class="col-2">
+            <place-selector (location)="getLocation($event)"></place-selector>
+            <app-theme-selector></app-theme-selector>
+        </section>
+        <section class="col-10">
+            <div class="mb-3">
+                <button  type="button" class="btn btn btn-light me-2" (click)="seeWeather('today')">Hoy</button>
+                <button  type="button" class="btn btn btn-light" (click)="seeWeather('week')">Semanal</button>
+            </div>
+            <div *ngIf="page === 'today'; else week">
+                <app-weather-today (coordinates)="getCoordinates($event)" [location]="location"></app-weather-today>
+            </div>
+            <ng-template #week>
+                <app-weather-week [coordinatesWeek]="coordinatesWeek"></app-weather-week>
+            </ng-template>
+        </section>
+    </div>
+</main>

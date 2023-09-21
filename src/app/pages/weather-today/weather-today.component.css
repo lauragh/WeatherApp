@@ -1,0 +1,53 @@
+.main-card {
+    border-radius: 5px;
+    padding: 20px;
+    color: white;
+    width: 25vw;
+}
+
+.hourly {
+    width: 100%;
+    max-width: 100%; /* Ancho máximo del 100% */
+    overflow-x: auto; /* Hace que aparezca una barra de desplazamiento horizontal si es necesario */
+    white-space: nowrap;
+}
+
+.bg-secondaryColor {
+    background-color: var(--blue-secondary);
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.separator {
+    height: 100%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3
+    );
+    margin: 5px 10px;
+}
+
+.icon {
+    width: 65px;
+    display: block;
+    margin: auto;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+h6 {
+    font-size: 18px;
+    margin: 0;
+}
+
+p {
+    font-size: 14px;
+}

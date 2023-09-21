@@ -1,0 +1,10 @@
+label, p {
+    font-weight: 600;
+}
+
+.btn {
+    color: var(--blue-main);
+    background-color: inherit;
+    border-radius: 5px;
+    border: 1.5px var(--blue-main) solid;
+}
