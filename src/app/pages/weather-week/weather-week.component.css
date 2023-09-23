@@ -1,0 +1,26 @@
+h6 {
+    margin: 0;
+}
+
+.mainCard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px; /* Espacio entre las tarjetas */
+}
+
+.mainCard {
+    border-radius: 10px;
+    background-color: var(--blue-cards);
+    color: white;
+}
+
+.icon {
+    display: block;
+    margin: auto;
+}
+
+/* @media (max-width: 768px) {
+    .mainCard-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+} */

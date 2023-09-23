@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { Weather } from 'src/app/interfaces/weather';
 import { WeatherHour } from 'src/app/interfaces/weather-hour';
@@ -9,14 +9,24 @@ import { Coordenates } from 'src/app/interfaces/coordenates';
   templateUrl: './weather-today.component.html',
   styleUrls: ['./weather-today.component.css']
 })
-export class WeatherTodayComponent implements OnInit, OnChanges{
+export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecked{
   @Input() location!: string;
   @Output() coordinates = new EventEmitter<Coordenates>();
+  @ViewChild('todayDetails') todayDetails!: ElementRef;
 
   weatherInfo!: Weather;
   weatherInfoHourly: WeatherHour[] = [];
   iconUrl: string = '';
   iconsUrl: string[] = [];
+  classWeather: { [key: string]: string } = {
+    claro : "--blue-day",
+    nub : "--blue-cloudy",
+    lluvia : " --blue-rain",
+    thunderstorm : "--blue-storm",
+    despejado : "--blue-day",
+    noche : "--blue-night"
+  };
+  description: string = '';
 
   ngOnInit(): void {
     this.getCurrentLocation();
@@ -28,8 +38,25 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
     }
   }
 
+  ngAfterViewChecked(): void {
+    if (this.description) {
+      for (const key in this.classWeather) {
+        if (this.description.includes(key)) {
+          this.renderer2.setStyle(
+            this.todayDetails.nativeElement,
+            'background-color',
+            `var(${this.classWeather[key]})`
+          );
+          
+          console.log(`La descripción incluye la palabra '${key}'`);
+        }
+      }
+    }
+  }
+
   constructor(
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private renderer2: Renderer2
   ){}
 
 
@@ -39,7 +66,6 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
       longitude: lon
     }
 
-    // console.log('envio a padre',{coordinates});
     this.coordinates.emit(coordinates);
   }
 
@@ -58,10 +84,8 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
     .subscribe((data: any) => {
       this.sendCoordinates(data.coord.lat, data.coord.lon);
       this.weatherInfo = data;
-      const newDescription = this.capitalizeFirstLetter(this.weatherInfo.weather[0].description);
-      this.weatherInfo.weather[0].description = newDescription;
-
-      // console.log(this.weatherInfo);
+      this.description = this.capitalizeFirstLetter(this.weatherInfo.weather[0].description);
+      this.weatherInfo.weather[0].description = this.description;
     });
   }
 
@@ -75,9 +99,16 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
     .subscribe((data: any) => {
       this.getIconWeather(data.weather[0].icon);
       this.weatherInfo = data;
-      const newDescription = this.capitalizeFirstLetter(this.weatherInfo.weather[0].description);
-      this.weatherInfo.weather[0].description = newDescription;
-      // console.log(this.weatherInfo);
+      this.description = this.capitalizeFirstLetter(this.weatherInfo.weather[0].description);
+      this.weatherInfo.weather[0].description = this.description;
+      if (typeof this.weatherInfo.sys.sunrise === 'number') {
+        this.weatherInfo.sys.sunrise = this.convertEpoch(this.weatherInfo.sys.sunrise);
+      }
+      if(typeof this.weatherInfo.sys.sunset === 'number') {
+        this.weatherInfo.sys.sunset = this.convertEpoch(this.weatherInfo.sys.sunset);
+      }
+      console.log(this.weatherInfo);
+
     });
   }
 
@@ -88,7 +119,6 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
       for(let info of this.weatherInfoHourly){
         this.getIconWeather(info.weather[0].icon, 'array');
         const newDescription = this.capitalizeFirstLetter(info.weather[0].description);
-
         if (typeof info.dt === 'number') {
           info.dt = this.convertEpoch(info.dt);
         }

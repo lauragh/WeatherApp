@@ -26,13 +26,13 @@ export class WeatherService {
   }
 
   getWeatherHourly(lat: number, lon: number){
-    const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=daily,minutely,current,alerts&units=metric&appid=${this.apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=daily,minutely,current,alerts&units=metric&appid=${this.apiKey}&lang=es`;
     
     return this.http.get(apiUrl);
   }
 
   getWeatherWeek(lat: number, lon: number){
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${this.apiKey}&lang=es`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${this.apiKey}&lang=es`;
     
     return this.http.get(apiUrl);
   }

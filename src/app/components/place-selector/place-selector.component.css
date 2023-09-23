@@ -3,8 +3,13 @@ label, p {
 }
 
 .btn {
-    color: var(--blue-main);
-    background-color: inherit;
+    color: white;
+    background-color: var(--blue-main);
     border-radius: 5px;
     border: 1.5px var(--blue-main) solid;
+    width: max-content;
+}
+
+.form-control {
+    width: 300px;
 }

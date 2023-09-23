@@ -2,37 +2,42 @@ import { WeatherDescription } from "./weather-description";
 
 export interface WeatherWeek {
     dt: number,
-    main: Main,
-    clouds: {
-        all: number
-    },
-    weather: WeatherDescription[],
-    wind: Wind
-    visibility: number,
-    pop: number,
-    sys: {
-        pod: string
-    }
-    dt_txt: string,
-    dayTime?: string,
-    dayWeek?: string,
-    hour?: string
-}
-
-interface Main {
-    feels_like: number,
-    humidity: number,
+    sunrise: number,
+    sunset: number,
+    moonrise: number,
+    moonset: number,
+    moon_phase: number,
+    temp: Temperature,
+    feels_like: TemperatureResume,
     pressure: number,
-    temp: number,
-    temp_max: number,
-    temp_min: number ,
-    sea_level: number,
-    grnd_level: number,
-    temp_kf: number
+    humidity: number,
+    dew_point: number,
+    wind_speed: number,
+    wind_deg: number,
+    wind_gust: number,
+    weather: WeatherDescription[],
+    clouds: number,
+    pop: number,
+    rain: number,
+    uvi: number,
+    dayDate?: string,
+    iconImg?: string
+    date: string,
 }
 
-interface Wind {
-    speed: number,
-    deg: number,
-    gust: number
+interface Temperature {
+    day: number,
+    night: number,
+    eve: number,
+    morn: number
+    min: number,
+    max: number,
 }
+
+interface TemperatureResume {
+    day: number,
+    night: number,
+    eve: number,
+    morn: number
+}
+

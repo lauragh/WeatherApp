@@ -1,12 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --blue-main: #5174ff;
-    --blue-secondary: #93abff;
-    --blue-bg: #dbe2fc;
-  }
+  --blue-bg: rgba(134, 185, 251, 0.8);
+  --blue-cards: rgba(98, 166, 244, 0.7);
+  --blue-main: #114E87;
+  --blue-day: #4EAFF3;
+  --blue-cloudy: #5570E9;
+  --blue-storm: #5F60E4;
+  --blue-rain: #5F4BBC;
+  --blue-night: #586DE8;
+  --gray: #ecf0f1;
+}
 
-  /* body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  } */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+body {
+    background-color: var(--blue-bg);
+}

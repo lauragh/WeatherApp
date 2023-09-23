@@ -1,47 +1,59 @@
 <main>
-    <section class="row">
-        <div class="d-flex justify-content-center" *ngFor="let weather of weatherWeek">
-            <h6>{{weather.dayWeek}}</h6>
-            <!-- <img class="icon" [src]="iconsUrl[i]">
-            <h6 class="d-flex justify-content-center mb-2">{{weather.temp | number: '1.0-0'}}º</h6>
-            <div class="d-flex justify-content-center">
-                <img class="me-2 icon-drop" src="assets/img/droplet.svg">
-                <p>{{weather.pop * 100| number: '1.0-0'}}%</p>
-            </div> -->
-        </div>
-
-    </section>
-    <!-- <section class="row mb-4 main-card bg-secondaryColor">
-        <div class="col d-flex flex-column justify-content-center">
-            <h1>{{weatherInfo.main.temp}}º</h1>
-            <h5>{{weatherInfo.weather[0].description}}</h5>
-        </div>
-        <div class="col d-flex justify-content-center align-self-center">
-            <img class="col" [src]="iconUrl" class="img-fluid">
-        </div>
-    </section>
-    <section>
-        <h5>{{weatherInfo.name}}</h5>
-        <p>
-            {{weatherInfo.main.temp_max | number: '1.0-0'}}º / {{weatherInfo.main.temp_min | number: '1.0-0'}}º
-            <span class="ms-2 me-2">
-                |
-            </span>
-            Sensación térmica {{weatherInfo.main.feels_like | number: '1.0-0'}}º
-        </p>
-    </section>
-    <section class="d-flex main-card bg-secondaryColor hourly">
-        <div class="d-flex" *ngFor="let weather of weatherInfoHourly; let i = index">
+    <section *ngIf="weatherDetails">
+        <div>
+            <h3>{{weatherDetails.date}}</h3>
             <div>
-                <h6 class="d-flex justify-content-center">{{weather.dt}}</h6>
-                <img class="icon" [src]="iconsUrl[i]">
-                <h6 class="d-flex justify-content-center mb-2">{{weather.temp | number: '1.0-0'}}º</h6>
-                <div class="d-flex justify-content-center">
-                    <img class="me-2 icon-drop" src="assets/img/droplet.svg">
-                    <p>{{weather.pop * 100| number: '1.0-0'}}%</p>
-                </div>
+                {{weatherDetails.weather[0].description}}
             </div>
-            <div *ngIf="i < weatherInfoHourly.length - 1" class="separator"></div>
+            <div>
+                Máxima
+                {{weatherDetails.temp.max}}º
+            </div>
+            <div>
+                Mínima
+                {{weatherDetails.temp.min}}º 
+            </div>
+            <div class="d-flex">
+                Probabilidad de lluvia
+                <img class="me-2 icon-drop" src="assets/img/droplet-empty.svg">
+                <p>{{weatherDetails.pop * 100| number: '1.0-0'}}%</p>
+            </div>
+            <div>
+                Humedad
+                <img class="me-2 icon-drop" src="assets/img/droplet-empty.svg">
+                <p>{{weatherDetails.humidity}}%</p>
+            </div>
+            <div>
+                Índice UV
+                <img class="me-2 icon-drop" src="assets/img/droplet-empty.svg">
+                <p>{{weatherDetails.uvi}}%</p>
+            </div>
+            <div>
+                Viento
+                <img class="me-2 icon-drop" src="assets/img/droplet-empty.svg">
+                <p>{{weatherDetails.wind_speed}}km/h</p>
+            </div>
         </div>
-    </section> -->
+    </section>
+    <section class="mainCard-container">
+        <div (click)="showDetails(info)" class="col mainCard p-4 cursor-pointer" *ngFor="let info of weatherWeek">
+            <h3>{{info.dayDate}}</h3>
+            <img class="icon" [src]="info.iconImg">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <img src="assets/img/sun-light.svg">
+                    Día
+                </div>
+                <h6 class="d-flex justify-content-center">{{info.temp.day | number: '1.0-0'}}º</h6>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <img src="assets/img/half-moon.svg">
+                    Noche
+                </div>
+                <h6 class="d-flex justify-content-center">{{info.temp.night | number: '1.0-0'}}º</h6>
+            </div>
+        
+        </div>
+    </section>
 </main>

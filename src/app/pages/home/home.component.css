@@ -1,23 +1,17 @@
 main {
-    height: 100vh;
     width: 100vw;
+    width: 1250px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
-.blue-main {
-    background-color: var(--blue-main);
-}
-
-.blue-bg {
-    background-color: var(--blue-bg);
-}
-
-button {
-    border: 1.5px rgba(81, 116, 255, 0.4) solid;
-    color: var(--blue-main);
-}
 
 button:hover {
     background-color: rgba(81, 116, 255, 0.4);
     border: 1.5px rgba(81, 116, 255, 0.4) solid;
     color: white;
+}
+
+.section {
+    border-bottom: white solid;
 }
