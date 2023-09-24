@@ -24,7 +24,7 @@
     background: var(--blue-cards);
 }
 
-/* width */
+/**CSS para el scrollbar**/
 ::-webkit-scrollbar {
     height: 5px;
 }
@@ -74,7 +74,6 @@ h5 {
 }
 
 h6 {
-    /* font-size: 18px; */
     margin: 0;
 }
 
@@ -82,34 +81,6 @@ p {
     font-size: 14px;
 }
 
-table {
-    border-collapse: collapse;
-}
-
-th {
-    border: none;
-}
-
-tr > td:nth-child(1) {
-    width: 130px;
-    border: none;
-}
-
-tr > td:nth-child(2) {
-    width: 130px;
-    border: none;
-}
-
-tr > td:nth-child(3) {
-    justify-content: end;
-    display: flex;
-    border: none;
-}
-
-.tableSize {
-    width: 300px;
-}
-
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6, p {
     color: white;
 }

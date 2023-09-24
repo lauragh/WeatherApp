@@ -1,20 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
   --blue-bg: rgba(134, 185, 251, 0.8);
-  --blue-cards: rgba(98, 166, 244, 0.7);
+  --blue-cards: rgba(0, 0, 0, 0.4);
   --blue-main: #114E87;
   --blue-day: #4EAFF3;
   --blue-cloudy: #5570E9;
   --blue-storm: #5F60E4;
   --blue-rain: #5F4BBC;
   --blue-night: #586DE8;
-  --gray: #ecf0f1;
+  --gray: #48484A;
 }
 
 .cursor-pointer {
   cursor: pointer;
 }
 
+html {
+  height: 100vh;
+}
+
 body {
-    background-color: var(--blue-bg);
+  background-image: linear-gradient(to bottom, 
+  rgb(0 84 153) 0%,       /* Color 1 al inicio (0%) */
+  rgb(0 140 255) 45%,     /* Color 2 al 25% del gradiente */
+  rgb(255, 197, 150) 100%, /* Color 3 al 50% del gradiente */
+  rgb(255, 162, 86) 75%   /* Color 4 al 75% del gradiente */
+);
+}
+
+.text-gray {
+  color: var(--gray);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  border: none;
+}
+
+tr > td:nth-child(1) {
+  width: 130px;
+  border: none;
+}
+
+tr > td:nth-child(2) {
+  width: 130px;
+  border: none;
+}
+
+tr > td:nth-child(3) {
+  justify-content: flex-end;
+  display: flex;
+  border: none;
+}
+
+.tableSize {
+  width: 300px;
 }

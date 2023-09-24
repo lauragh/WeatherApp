@@ -13,5 +13,15 @@ button:hover {
 }
 
 .section {
+    /* border-bottom: white solid; */
     border-bottom: white solid;
+}
+
+#logo {
+    width: 80px;
+}
+
+h1 {
+    width: max-content;
+    padding: 20px !important;
 }

@@ -24,3 +24,28 @@ h6 {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 } */
+
+.weatherStyle {
+    width: 314px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.weatherStyleMode  {
+    width: 50px;
+    display: flex;
+}
+
+h6, p {
+    align-items: center;
+    margin: 0;
+}
+
+.tableSize {
+    width: 450px;
+}
+
+tr > td:nth-child(2) {
+    width: 190px;
+    border: none;
+}

@@ -4,9 +4,9 @@ label, p {
 
 .btn {
     color: white;
-    background-color: var(--blue-main);
+    background-color: var(--gray);
     border-radius: 5px;
-    border: 1.5px var(--blue-main) solid;
+    border: 1.5px var(--gray) solid;
     width: max-content;
 }
 

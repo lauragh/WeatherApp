@@ -18,14 +18,14 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
   weatherInfoHourly: WeatherHour[] = [];
   iconUrl: string = '';
   iconsUrl: string[] = [];
-  classWeather: { [key: string]: string } = {
-    claro : "--blue-day",
-    nub : "--blue-cloudy",
-    lluvia : " --blue-rain",
-    thunderstorm : "--blue-storm",
-    despejado : "--blue-day",
-    noche : "--blue-night"
-  };
+  // classWeather: { [key: string]: string } = {
+  //   claro : "--blue-day",
+  //   nub : "--blue-cloudy",
+  //   lluvia : " --blue-rain",
+  //   thunderstorm : "--blue-storm",
+  //   despejado : "--blue-day",
+  //   noche : "--blue-night"
+  // };
   description: string = '';
 
   ngOnInit(): void {
@@ -39,19 +39,19 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
   }
 
   ngAfterViewChecked(): void {
-    if (this.description) {
-      for (const key in this.classWeather) {
-        if (this.description.includes(key)) {
-          this.renderer2.setStyle(
-            this.todayDetails.nativeElement,
-            'background-color',
-            `var(${this.classWeather[key]})`
-          );
+    // if (this.description) {
+    //   for (const key in this.classWeather) {
+    //     if (this.description.includes(key)) {
+    //       this.renderer2.setStyle(
+    //         this.todayDetails.nativeElement,
+    //         'background-color',
+    //         `var(${this.classWeather[key]})`
+    //       );
           
-          console.log(`La descripción incluye la palabra '${key}'`);
-        }
-      }
-    }
+    //       console.log(`La descripción incluye la palabra '${key}'`);
+    //     }
+    //   }
+    // }
   }
 
   constructor(

@@ -1,8 +1,9 @@
 <main *ngIf="weatherInfo">
-    <section class="mb-2">
+    <section class="mb-2 d-flex">
         <h2>{{weatherInfo.name}}</h2>
+        <img class="ms-2" src="assets/img/pin-alt.svg">
     </section>
-    <section #todayDetails class="row mb-4 main-card">
+    <section #todayDetails class="row mb-4 main-card bg-secondaryColor">
         <div class="col d-flex flex-column justify-content-center">
             <div class="d-flex">
                 <div>

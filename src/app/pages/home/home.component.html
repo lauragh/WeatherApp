@@ -1,14 +1,17 @@
 <main class="blue-bg">
-    <h2 class="text-white text-center p-5 blue-main">El tiempo</h2>
+    <div class="d-flex justify-content-center m-2">
+        <img id="logo" src="assets/img/logo.svg">
+        <h1 class="text-white text-center p-5 blue-main">El tiempo</h1>
+    </div>
     <div class="row m-4">
         <section>
             <section>
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="d-flex">
-                        <div [ngClass]="{'section': page === 'today'}" class="section justify-content-center d-flex me-4">
+                        <div [ngClass]="{'section': page === 'today'}" class="section justify-content-center d-flex me-4 cursor-pointer">
                             <h4 class="m-2 text-white" (click)="seeWeather('today')">Hoy</h4>
                         </div>
-                        <div [ngClass]="{'section': page === 'week'}" class="section justify-content-center d-flex">
+                        <div [ngClass]="{'section': page === 'week'}" class="section justify-content-center d-flex cursor-pointer">
                             <h4 class="m-2 text-white" (click)="seeWeather('week')">Semanal</h4>
                         </div>
                     </div>
