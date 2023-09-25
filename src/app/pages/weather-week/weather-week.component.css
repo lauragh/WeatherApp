@@ -2,6 +2,14 @@ h6 {
     margin: 0;
 }
 
+.main-card {
+    width: 100%;
+}
+
+.bg-secondaryColor {
+    background: var(--blue-cards);
+}
+
 .mainCard-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

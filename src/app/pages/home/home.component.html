@@ -1,32 +1,36 @@
-<main class="blue-bg">
-    <div class="d-flex justify-content-center m-2">
-        <img id="logo" src="assets/img/logo.svg">
-        <h1 class="text-white text-center p-5 blue-main">El tiempo</h1>
-    </div>
-    <div class="row m-4">
-        <section>
-            <section>
-                <div class="mb-3 d-flex justify-content-between">
-                    <div class="d-flex">
-                        <div [ngClass]="{'section': page === 'today'}" class="section justify-content-center d-flex me-4 cursor-pointer">
-                            <h4 class="m-2 text-white" (click)="seeWeather('today')">Hoy</h4>
-                        </div>
-                        <div [ngClass]="{'section': page === 'week'}" class="section justify-content-center d-flex cursor-pointer">
-                            <h4 class="m-2 text-white" (click)="seeWeather('week')">Semanal</h4>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <place-selector (location)="getLocation($event)"></place-selector>
-                        <app-theme-selector></app-theme-selector>
-                    </div>
-                </div>
-            </section>
-            <div *ngIf="page === 'today'; else week">
-                <app-weather-today (coordinates)="getCoordinates($event)" [location]="location"></app-weather-today>
+<main #main class="blue-light">
+    <div>
+        <div class="position-relative">
+            <div class="d-flex justify-content-center mb-2">
+                <img id="logo" src="assets/img/logo.svg">
+                <h1 class="text-white text-center p-5 blue-main">El tiempo</h1>
             </div>
-            <ng-template #week>
-                <app-weather-week [coordinatesWeek]="coordinatesWeek"></app-weather-week>
-            </ng-template>
-        </section>
+            <app-theme-selector class="position-absolute ms-3 d-flex align-items-center"></app-theme-selector>
+        </div>
+        <div class="row m-4">
+            <section>
+                <section>
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div class="d-flex">
+                            <div [ngClass]="{'section': page === 'today'}" class="section justify-content-center d-flex me-4 cursor-pointer">
+                                <h4 class="m-2 text-white" (click)="seeWeather('today')">Hoy</h4>
+                            </div>
+                            <div [ngClass]="{'section': page === 'week'}" class="section justify-content-center d-flex cursor-pointer">
+                                <h4 class="m-2 text-white" (click)="seeWeather('week')">Semanal</h4>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <place-selector class="d-flex align-items-center" (location)="getLocation($event)"></place-selector>
+                        </div>
+                    </div>
+                </section>
+                <div *ngIf="page === 'today'; else week">
+                    <app-weather-today (coordinates)="getCoordinates($event)" [location]="location"></app-weather-today>
+                </div>
+                <ng-template #week>
+                    <app-weather-week [coordinatesWeek]="coordinatesWeek"></app-weather-week>
+                </ng-template>
+            </section>
+        </div>
     </div>
 </main>

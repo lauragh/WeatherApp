@@ -1,1 +1,7 @@
-<p>theme-selector works!</p>
+<div #wrapper class="d-flex">
+    <input #switch (input)="setTheme()" type="checkbox" id="hide-checkbox">
+    <label for="hide-checkbox" class="toggle">
+      <span class="toggle-button">
+      </span>
+    </label>
+</div>

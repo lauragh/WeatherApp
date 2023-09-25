@@ -1,16 +1,9 @@
-.main-card {
-    border-radius: 5px;
-    padding: 20px;
-    color: white;
-    width: 45vw;
-}
-
-.icon-info {
-    width: 24px;
-}
-
 .cardSize {
     width: 80px;
+}
+
+.main-card {
+    width: 45vw;
 }
 
 .hourly {
@@ -81,6 +74,3 @@ p {
     font-size: 14px;
 }
 
-h1,h2,h3,h4,h5,h6, p {
-    color: white;
-}

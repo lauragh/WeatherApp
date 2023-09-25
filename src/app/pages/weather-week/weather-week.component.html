@@ -1,14 +1,15 @@
 <main>
-    <section *ngIf="weatherDetails">
-        <section #todayDetails class="row mb-4 main-card bg-secondaryColor">
-            <div class="col d-flex flex-column justify-content-center">
+    <section class="mb-3" *ngIf="weatherDetails">
+        <section #todayDetails class="d-flex justify-content-between main-card bg-secondaryColor">
+            <div class="d-flex flex-column justify-content-center">
                 <h3>{{weatherDetails.date}}</h3>
                 <div class="d-flex">
                     <div>
+                        <h1>{{weatherDetails.temp.day}}º</h1>
                         <h5>{{weatherDetails.weather[0].description}}</h5>
                     </div>
                     <div class="col align-self-center">
-                        <!-- <img class="col" [src]="iconUrl" class="img-fluid"> -->
+                        <img class="col" [src]="weatherDetails.iconImg" class="img-fluid">
                     </div>
                 </div>
                 
@@ -84,7 +85,7 @@
                     </tr>
                     <tr>
                         <th scope="row">
-                            <img class="icon-info" src="assets/img/pressure.svg">
+                            <img class="icon-info" src="assets/img/uv.svg">
                         </th>
                         <td class="align-middle">
                             <h6 stlye="width: max-content">Índice UV</h6>
@@ -95,7 +96,7 @@
                     </tr>
                     <tr>
                         <th scope="row">
-                            <img class="icon-info" src="assets/img/droplet.svg">
+                            <img src="assets/img/droplet.svg">
                         </th>
                         <td class="align-middle">
                             <h6 stlye="width: max-content">Probabilidad de lluvia</h6>
@@ -104,7 +105,6 @@
                             <h6>{{weatherDetails.pop * 100| number: '1.0-0'}}%</h6>
                         </td>
                     </tr>
-                    
                     </tbody>
                 </table>
             </div>

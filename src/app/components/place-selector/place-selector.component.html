@@ -6,7 +6,7 @@
             <option *ngFor="let location of locations" [value]="location"></option>
         </datalist>
     </div>
-    <div class="btn justify-content-center d-flex">
+    <div (click)="getLocation()" class="btn justify-content-center d-flex">
         <img class="me-1" src="assets/img/pin-alt.svg">
         Ubicación
     </div>

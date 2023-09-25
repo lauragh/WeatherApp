@@ -1,8 +1,38 @@
 main {
+    height: 100vh;
     width: 100vw;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+      
+}
+
+app-theme-selector {
+    top: 40%;
+    right: 3%;
+}
+
+main > div {
     width: 1250px;
     max-width: 100%;
     margin: 0 auto;
+}
+
+.blue-light {
+    background-image: linear-gradient(to bottom, 
+        rgb(0 84 153) 0%,       /* Color 1 al inicio (0%) */
+        rgb(0 140 255) 45%,     /* Color 2 al 25% del gradiente */
+        rgb(255, 197, 150) 100%, /* Color 3 al 50% del gradiente */
+        rgb(255, 162, 86) 75%   /* Color 4 al 75% del gradiente */
+    );
+}
+
+.blue-dark {
+    background-image: linear-gradient(to bottom,
+        rgb(0 0 0) 0%,
+        rgb(0, 16, 29) 45%,
+        rgb(0, 50, 92) 100%,
+        rgb(0, 73, 133) 75%  
+    );
 }
 
 

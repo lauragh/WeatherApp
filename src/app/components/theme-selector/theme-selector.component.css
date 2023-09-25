@@ -1,0 +1,42 @@
+#hide-checkbox {
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.toggle {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background: #3392ff; /* Amarillo claro (día) por defecto */
+    border-radius: 15px;
+    transition: 500ms;
+    overflow: hidden;
+    border: white 1px solid;
+}
+
+.toggle-button {
+    position: absolute;
+    display: inline-block;
+    top: 3px;
+    left: 3px; /* Cambiado a la posición izquierda (día) por defecto */
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fcff3d; /* Azul oscuro (día) por defecto */
+    overflow: hidden;
+    box-shadow: 0 0 11px 1px rgba(255, 255, 255);
+    transition: all 500ms ease-out;
+}
+
+#hide-checkbox:checked + .toggle {
+    background: #211042; /* Cambiado a azul oscuro (noche) cuando está activado */
+}
+
+#hide-checkbox:checked + .toggle .toggle-button {
+    background: #ffffff; /* Amarillo (noche) cuando está activado */
+    transform: translateX(30px); /* Cambiado a la posición derecha (noche) cuando está activado */
+    box-shadow: 0 0 11px 1px rgba(255, 255, 255);
+}

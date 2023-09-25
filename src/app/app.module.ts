@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { WeatherService } from './services/weather.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
   ],
   providers: [
     WeatherService,
+    DataService
 
   ],
   bootstrap: [AppComponent]

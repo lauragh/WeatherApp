@@ -6,7 +6,7 @@ import { Observable, catchError, map, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class WeatherService {
-  private apiKey  = 'cec6e77b5dc38f634f705ee9c5cdb355';
+  private apiKey  = '39366819d4e4c9184734c429c9078d5d';
 
   constructor(private http: HttpClient) { }
 

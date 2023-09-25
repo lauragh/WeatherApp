@@ -19,15 +19,6 @@ html {
   height: 100vh;
 }
 
-body {
-  background-image: linear-gradient(to bottom, 
-  rgb(0 84 153) 0%,       /* Color 1 al inicio (0%) */
-  rgb(0 140 255) 45%,     /* Color 2 al 25% del gradiente */
-  rgb(255, 197, 150) 100%, /* Color 3 al 50% del gradiente */
-  rgb(255, 162, 86) 75%   /* Color 4 al 75% del gradiente */
-);
-}
-
 .text-gray {
   color: var(--gray);
 }
@@ -58,4 +49,17 @@ tr > td:nth-child(3) {
 
 .tableSize {
   width: 300px;
+}
+
+.icon-info {
+  width: 24px;
+}
+
+h1,h2,h3,h4,h5,h6, p {
+  color: white;
+}
+
+.main-card {
+  border-radius: 5px;
+  padding: 20px;
 }

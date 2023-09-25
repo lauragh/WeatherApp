@@ -18,17 +18,18 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
   weatherInfoHourly: WeatherHour[] = [];
   iconUrl: string = '';
   iconsUrl: string[] = [];
-  // classWeather: { [key: string]: string } = {
-  //   claro : "--blue-day",
-  //   nub : "--blue-cloudy",
-  //   lluvia : " --blue-rain",
-  //   thunderstorm : "--blue-storm",
-  //   despejado : "--blue-day",
-  //   noche : "--blue-night"
-  // };
   description: string = '';
 
   ngOnInit(): void {
+
+    if(localStorage.getItem('lat')){
+      console.log('entro para pillar coords');
+      const lat = Number(localStorage.getItem('lat'));
+      const lon = Number(localStorage.getItem('lon'));
+
+      this.getWeatherFromCoordinates(lat,lon);
+      this.getWeatherHourly(lat,lon);
+    }
     this.getCurrentLocation();
   }
 
@@ -39,19 +40,7 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
   }
 
   ngAfterViewChecked(): void {
-    // if (this.description) {
-    //   for (const key in this.classWeather) {
-    //     if (this.description.includes(key)) {
-    //       this.renderer2.setStyle(
-    //         this.todayDetails.nativeElement,
-    //         'background-color',
-    //         `var(${this.classWeather[key]})`
-    //       );
-          
-    //       console.log(`La descripción incluye la palabra '${key}'`);
-    //     }
-    //   }
-    // }
+
   }
 
   constructor(
@@ -86,6 +75,12 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
       this.weatherInfo = data;
       this.description = this.capitalizeFirstLetter(this.weatherInfo.weather[0].description);
       this.weatherInfo.weather[0].description = this.description;
+      if (typeof this.weatherInfo.sys.sunrise === 'number') {
+        this.weatherInfo.sys.sunrise = this.convertEpoch(this.weatherInfo.sys.sunrise);
+      }
+      if(typeof this.weatherInfo.sys.sunset === 'number') {
+        this.weatherInfo.sys.sunset = this.convertEpoch(this.weatherInfo.sys.sunset);
+      }
     });
   }
 
