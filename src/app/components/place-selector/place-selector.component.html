@@ -8,6 +8,8 @@
     </div>
     <div (click)="getLocation()" class="btn justify-content-center d-flex">
         <img class="me-1" src="assets/img/pin-alt.svg">
-        Ubicación
+        <p *ngIf="!isMobile">
+            Ubicación
+        </p>
     </div>
 </div>

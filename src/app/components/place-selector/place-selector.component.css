@@ -17,9 +17,13 @@ label, p {
 }
 
 .form-control {
-    width: 300px;
+    max-width: 300px;
 }
 
 h4 {
     color: black !important;
+}
+
+p {
+    margin: 0;
 }

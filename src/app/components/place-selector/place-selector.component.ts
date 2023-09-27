@@ -12,13 +12,22 @@ export class PlaceSelectorComponent implements OnInit {
   @Output() location = new EventEmitter<string>();
   perm: boolean = false;
   searches: number = 0;
+  isMobile: boolean = false;
 
   ngOnInit(): void {
+    this.checkDevice();
+
   }
 
   constructor(
     private dataService: DataService,
   ){}
+
+  checkDevice(){
+    if (window.innerWidth <= 1460) {
+      this.isMobile = true;
+    }
+  }
 
   sendLocation(event: Event) {
     if(this.searches < 1){
@@ -37,7 +46,7 @@ export class PlaceSelectorComponent implements OnInit {
     message.style.top = "50%";
     message.style.left = "50%";
     message.style.transform = "translate(-50%, -50%)";
-    message.style.padding = "40px";
+    message.style.padding = "35px";
     message.style.background = "white";
     message.style.borderRadius = "5px";
     message.style.zIndex = "1";
@@ -47,10 +56,9 @@ export class PlaceSelectorComponent implements OnInit {
     text.style.color = "black"; 
     message.appendChild(text);
     
-    const updateText = document.createElement("h5");
+    const updateText = document.createElement("p");
     updateText.innerText = "Por favor, actualiza tu suscripción a premium";
     updateText.style.color = "black";
-    updateText.className = 'd-flex justify-content-center';
 
     message.appendChild(updateText);
 

@@ -2,8 +2,6 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Coordenates } from 'src/app/interfaces/coordenates';
 import { WeatherWeek } from 'src/app/interfaces/weather-week';
 import { WeatherService } from 'src/app/services/weather.service';
-import { Weather } from '../../interfaces/weather';
-import { WeatherWeekDetailsClass } from 'src/app/models/weather-week-details-class';
 
 @Component({
   selector: 'app-weather-week',
@@ -30,7 +28,7 @@ export class WeatherWeekComponent implements OnInit, OnChanges{
     private weatherService: WeatherService
   ){}
 
-
+  //Obtiene el tiempo semanal
   getWeatherWeek(): void{
     const { latitude, longitude } = this.coordinatesWeek;
 
@@ -48,6 +46,8 @@ export class WeatherWeekComponent implements OnInit, OnChanges{
     });
   }
 
+  //Convierte el tiempo(epoch) a string con el tiempo local
+  //Ej. mié 27 / miércoles, 27 de septiembre de 2023  
   convertDate(epoch: number, format?: string): string{
     const date = new Date(epoch * 1000);
 
@@ -74,7 +74,7 @@ export class WeatherWeekComponent implements OnInit, OnChanges{
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
   
-
+  //Obtiene los datos de la tarjeta clickada
   showDetails(data: WeatherWeek): void {
     data.date = this.convertDate(data.dt, 'long')
     this.weatherDetails = data;

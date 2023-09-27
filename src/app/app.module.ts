@@ -9,8 +9,7 @@ import { WeatherTodayComponent } from './pages/weather-today/weather-today.compo
 import { WeatherWeekComponent } from './pages/weather-week/weather-week.component';
 import { HomeComponent } from './pages/home/home.component';
 import { WeatherService } from './services/weather.service';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpInterceptorService } from './services/http-interceptor.service';
+import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
 
 @NgModule({

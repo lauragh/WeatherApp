@@ -3,13 +3,14 @@ import { WeatherService } from '../../services/weather.service';
 import { Weather } from 'src/app/interfaces/weather';
 import { WeatherHour } from 'src/app/interfaces/weather-hour';
 import { Coordenates } from 'src/app/interfaces/coordenates';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-weather-today',
   templateUrl: './weather-today.component.html',
   styleUrls: ['./weather-today.component.css']
 })
-export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecked{
+export class WeatherTodayComponent implements OnInit, OnChanges{
   @Input() location!: string;
   @Output() coordinates = new EventEmitter<Coordenates>();
   @ViewChild('todayDetails') todayDetails!: ElementRef;
@@ -21,16 +22,7 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
   description: string = '';
 
   ngOnInit(): void {
-
-    if(localStorage.getItem('lat')){
-      console.log('entro para pillar coords');
-      const lat = Number(localStorage.getItem('lat'));
-      const lon = Number(localStorage.getItem('lon'));
-
-      this.getWeatherFromCoordinates(lat,lon);
-      this.getWeatherHourly(lat,lon);
-    }
-    this.getCurrentLocation();
+    this.checkLocation();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -39,16 +31,34 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
     }
   }
 
-  ngAfterViewChecked(): void {
-
-  }
-
   constructor(
     private weatherService: WeatherService,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
+    private dataService: DataService,
+
   ){}
 
+  //Comprueba si hay datos de la ubicación precisa almacenados
+  checkLocation(){
+    this.dataService.locationG.subscribe((location: boolean) => {
+      console.log({location})
+      if(localStorage.getItem('lat') || location){
+        console.log('entro para pillar coords');
+        const lat = Number(localStorage.getItem('lat'));
+        const lon = Number(localStorage.getItem('lon'));
+  
+        this.getWeatherFromCoordinates(lat, lon);
+        this.getWeatherHourly(lat, lon);
+        this.sendCoordinates(lat, lon);
 
+      }
+      else{
+        this.getCurrentLocation();
+      }
+    });
+  }
+
+  //Envía las coordenadas al tiempo semanal
   sendCoordinates(lat: number, lon: number): void {
     const coordinates = {
       latitude: lat,
@@ -58,7 +68,7 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
     this.coordinates.emit(coordinates);
   }
 
-
+  //Obtiene las coordenadas de nuestro IP
   getCurrentLocation(): void{
     this.weatherService.getIpCliente()
     .subscribe((data: any) => {
@@ -68,6 +78,7 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
     });
   }
 
+  //Obtiene el tiempo mediante el nombre de la localidad
   getWeatherFromCity(location: string): void{
     this.weatherService.getWeatherFromCity(location)
     .subscribe((data: any) => {
@@ -84,11 +95,12 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
     });
   }
 
+  //Pone en mayúsculas la primera letra
   capitalizeFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
-
+  //Obtiene el tiempo mediante coordenadas
   getWeatherFromCoordinates(lat: number, lon: number): void{
     this.weatherService.getWeatherFromCoordinates(lat, lon)
     .subscribe((data: any) => {
@@ -107,6 +119,7 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
     });
   }
 
+  //Obtiene el tiempo por horas
   getWeatherHourly(lat: number, lon: number): void{
     this.weatherService.getWeatherHourly(lat, lon)
     .subscribe((data: any) => {
@@ -119,10 +132,10 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
         }
         info.weather[0].description = newDescription;
       }
-      // console.log(data, this.weatherInfoHourly);
     });
   }
 
+  //Convierte el tiempo (epoch) a un string. Ej: 18:00
   convertEpoch(epoch: number): string{
     const date = new Date(epoch * 1000);
     const hours = date.getHours();
@@ -133,6 +146,7 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
     return time
   }
 
+  //Obtiene los iconos del tiempo
   getIconWeather(name: string, object?: string): void{
     if(object){
       this.iconsUrl.push(`https://openweathermap.org/img/wn/${name}@2x.png`);
@@ -141,6 +155,4 @@ export class WeatherTodayComponent implements OnInit, OnChanges, AfterViewChecke
       this.iconUrl = `https://openweathermap.org/img/wn/${name}@2x.png`;
     }
   }
-  
-
 }

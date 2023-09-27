@@ -32,30 +32,23 @@ export class HomeComponent implements OnInit, AfterViewInit{
     this.location = newLocation;
   }
 
-  getPermission(permission: boolean) {
-    console.log('recibo permission', permission)
-    // this.coordinatesWeek = coords;
-  }
-
-
   getCoordinates(coords: Coordenates) {
-    // console.log('recibo',{coords});
     this.coordinatesWeek = coords;
-    // console.log('estan bien', this.coordinatesWeek);
   }
 
   seeWeather(page: string){
     this.page = page;
   }
 
+  //Comprueba la temática escogida
   checkTheme(){
     this.dataService.themeG.subscribe((theme: string) => {
       this.applyTheme(theme);
     });
   }
   
+  //Cambia las clases de estilo
   applyTheme(theme: string): void {
-    // console.log(theme, 'entro');
     if (theme === 'dark') {
       this.renderer2.removeClass(this.main.nativeElement, 'blue-light');
       this.renderer2.addClass(this.main.nativeElement, 'blue-dark');

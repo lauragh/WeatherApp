@@ -1,6 +1,7 @@
 <main>
+    <!-- Tarjeta con la información detallada con el día de la semana -->
     <section class="mb-3" *ngIf="weatherDetails">
-        <section #todayDetails class="d-flex justify-content-between main-card bg-secondaryColor">
+        <section #todayDetails class="justify-content-between main-card bg-secondaryColor">
             <div class="d-flex flex-column justify-content-center">
                 <h3>{{weatherDetails.date}}</h3>
                 <div class="d-flex">
@@ -9,11 +10,11 @@
                         <h5>{{weatherDetails.weather[0].description}}</h5>
                     </div>
                     <div class="col align-self-center">
-                        <img class="col" [src]="weatherDetails.iconImg" class="img-fluid">
+                        <img class="col" [src]="weatherDetails.iconImg">
                     </div>
                 </div>
                 
-                <div>
+                <div class="text-white">
                     {{weatherDetails.temp.max | number: '1.0-0'}}º / {{weatherDetails.temp.min | number: '1.0-0'}}º
                     <div>
                         <div class="weatherStyle">
@@ -110,6 +111,8 @@
             </div>
         </section>
     </section>
+    
+    <!-- Tarjetas con el tiempo semanal -->
     <section class="mainCard-container">
         <div (click)="showDetails(info)" class="col mainCard p-4 cursor-pointer" *ngFor="let info of weatherWeek">
             <h3>{{info.dayDate}}</h3>

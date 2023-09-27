@@ -4,6 +4,7 @@ h6 {
 
 .main-card {
     width: 100%;
+    display: flex;
 }
 
 .bg-secondaryColor {
@@ -13,7 +14,7 @@ h6 {
 .mainCard-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px; /* Espacio entre las tarjetas */
+    gap: 16px;
 }
 
 .mainCard {
@@ -27,11 +28,20 @@ h6 {
     margin: auto;
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .mainCard-container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
-} */
+
+    .main-card {
+        width: 100%;
+        display: block;
+    }
+
+    .tableSize {
+        width: 100%;
+    }
+}
 
 .weatherStyle {
     width: 314px;
@@ -57,3 +67,11 @@ tr > td:nth-child(2) {
     width: 190px;
     border: none;
 }
+
+
+@media (max-width: 768px) {
+    .icon {
+        width: 100%;
+    }
+}
+

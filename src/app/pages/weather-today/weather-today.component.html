@@ -3,6 +3,7 @@
         <h2>{{weatherInfo.name}}</h2>
         <img class="ms-2" src="assets/img/pin-alt.svg">
     </section>
+    <!-- Tarjeta principal con información detallada -->
     <section #todayDetails class="row mb-4 main-card bg-secondaryColor">
         <div class="col d-flex flex-column justify-content-center">
             <div class="d-flex">
@@ -11,7 +12,7 @@
                     <h5>{{weatherInfo.weather[0].description}}</h5>
                 </div>
                 <div class="col align-self-center">
-                    <img class="col" [src]="iconUrl" class="img-fluid">
+                    <img class="col" [src]="iconUrl">
                 </div>
             </div>
             <h6>
@@ -84,6 +85,8 @@
             </table>
         </div>
     </section>
+
+    <!-- Tarjetas con el tiempo por horas -->
     <section class="d-flex main-card bg-secondaryColor hourly">
         <div class="d-flex" *ngFor="let weather of weatherInfoHourly; let i = index">
             <div class="cardSize">
