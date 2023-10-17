@@ -120,14 +120,18 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div>
                     <img src="assets/img/sun-light.svg">
-                    Día
+                    <p *ngIF="!isMobile">
+                        Día
+                    </p>
                 </div>
                 <h6 class="d-flex justify-content-center">{{info.temp.day | number: '1.0-0'}}º</h6>
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <div>
                     <img src="assets/img/half-moon.svg">
-                    Noche
+                    <p *ngIF="!isMobile">
+                        Noche
+                    </p>
                 </div>
                 <h6 class="d-flex justify-content-center">{{info.temp.night | number: '1.0-0'}}º</h6>
             </div>

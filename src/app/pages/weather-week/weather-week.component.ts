@@ -13,6 +13,7 @@ export class WeatherWeekComponent implements OnInit, OnChanges{
   weatherWeek: WeatherWeek[] = [];
   iconsUrl: string[] = [];
   weatherDetails?: WeatherWeek;
+  isMobile: boolean = false;
 
   ngOnInit(): void {
     this.getWeatherWeek();
@@ -27,6 +28,12 @@ export class WeatherWeekComponent implements OnInit, OnChanges{
   constructor(
     private weatherService: WeatherService
   ){}
+
+  checkDevice(){
+    if (window.innerWidth <= 768) {
+      this.isMobile = true;
+    }
+  }
 
   //Obtiene el tiempo semanal
   getWeatherWeek(): void{

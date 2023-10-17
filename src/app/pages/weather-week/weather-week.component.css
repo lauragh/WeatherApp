@@ -28,21 +28,6 @@ h6 {
     margin: auto;
 }
 
-@media (max-width: 768px) {
-    .mainCard-container {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    }
-
-    .main-card {
-        width: 100%;
-        display: block;
-    }
-
-    .tableSize {
-        width: 100%;
-    }
-}
-
 .weatherStyle {
     width: 314px;
     display: flex;
@@ -68,10 +53,26 @@ tr > td:nth-child(2) {
     border: none;
 }
 
-
 @media (max-width: 768px) {
+    .mainCard-container {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .main-card {
+        width: 100%;
+        display: block;
+    }
+
+    .tableSize {
+        width: 100%;
+    }
+
     .icon {
         width: 100%;
     }
 }
 
+
+p {
+    margin: 0;
+}
