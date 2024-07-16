@@ -68,7 +68,7 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
 
   //Obtiene las coordenadas de nuestro IP
   async getCurrentLocation(): Promise<void>{
-    const [ latitude, longitude ] = await this.getUserLocation();
+    const [ longitude, latitude ] = await this.getUserLocation();
     this.sendCoordinates(latitude, longitude);
     this.getWeatherFromCoordinates(latitude, longitude);
     this.getWeatherHourly(latitude, longitude);
