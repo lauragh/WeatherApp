@@ -102,8 +102,6 @@ export class PlaceSelectorComponent implements OnInit {
 
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
-
-      console.log('entro', lat, lon);
       
       localStorage.setItem('lat',`${lat}`);
       localStorage.setItem('lon',`${lon}`);

@@ -41,10 +41,8 @@ export class WeatherWeekComponent implements OnInit, OnChanges{
 
     this.weatherService.getWeatherWeek(latitude, longitude)
     .subscribe((data: any) => {
-      console
       this.weatherWeek = data.daily;
 
-      console.log(this.weatherWeek);
       for(let info of this.weatherWeek){
         info.dayDate = this.convertDate(info.dt);
         info.iconImg = this.getIconWeather(info.weather[0].icon);

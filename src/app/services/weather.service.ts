@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,18 +35,4 @@ export class WeatherService {
     
     return this.http.get(apiUrl);
   }
-
-
-  getIpCliente(): Observable<string> {
-    const apiUrl = 'https://ipapi.co/json/';
-    return this.http.get<any>(apiUrl)
-    .pipe(
-      map(response => response),
-      catchError(error => {
-        console.error('Error al obtener la ubicación:', error);
-        return throwError('Ubicación desconocida');
-      })
-    );
-  }
-
 }

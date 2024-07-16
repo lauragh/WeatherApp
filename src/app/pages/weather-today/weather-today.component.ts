@@ -41,9 +41,7 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
   //Comprueba si hay datos de la ubicación precisa almacenados
   checkLocation(){
     this.dataService.locationG.subscribe((location: boolean) => {
-      console.log({location})
       if(localStorage.getItem('lat') || location){
-        console.log('entro para pillar coords');
         const lat = Number(localStorage.getItem('lat'));
         const lon = Number(localStorage.getItem('lon'));
   
@@ -69,12 +67,26 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
   }
 
   //Obtiene las coordenadas de nuestro IP
-  getCurrentLocation(): void{
-    this.weatherService.getIpCliente()
-    .subscribe((data: any) => {
-      this.sendCoordinates(data.latitude, data.longitude);
-      this.getWeatherFromCoordinates(data.latitude, data.longitude);
-      this.getWeatherHourly(data.latitude, data.longitude);
+  async getCurrentLocation(): Promise<void>{
+    const [ latitude, longitude ] = await this.getUserLocation();
+    this.sendCoordinates(latitude, longitude);
+    this.getWeatherFromCoordinates(latitude, longitude);
+    this.getWeatherHourly(latitude, longitude);
+    
+  }
+
+  async getUserLocation(): Promise<[number, number]> {
+    return new Promise( (resolve, reject ) => {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          resolve( [ coords.longitude, coords.latitude ] );
+        },
+        ( err ) => {
+          alert('No se pudo obtener la geolocalización')
+          console.log(err);
+          reject();
+        }
+      );
     });
   }
 
@@ -114,7 +126,6 @@ export class WeatherTodayComponent implements OnInit, OnChanges{
       if(typeof this.weatherInfo.sys.sunset === 'number') {
         this.weatherInfo.sys.sunset = this.convertEpoch(this.weatherInfo.sys.sunset);
       }
-      console.log(this.weatherInfo);
 
     });
   }
